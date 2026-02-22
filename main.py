@@ -3,12 +3,12 @@ from pathlib import Path
 from puzzle_loader import load_puzzle
 from solver.brute_force_solver import Solver, NoSolutionError, MultipleSolutionsError
 
-COLUMNS = "ABCDEF"
+COLUMNS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 PUZZLES_DIR = Path(__file__).parent / "puzzles"
 
 
 def main() -> None:
-    puzzle = load_puzzle(PUZZLES_DIR / "puzzle_3.json")
+    puzzle = load_puzzle(PUZZLES_DIR / "puzzle_8.json")
     solver = Solver(puzzle)
     try:
         solution = solver.solve()

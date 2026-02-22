@@ -27,8 +27,8 @@
       {"row": 2, "col": 5, "room": "jacuzzi"},
       {"row": 2, "col": 6, "room": "deck", "objects": ["chair"]},
 
-      {"row": 3, "col": 0, "room": "living_room", "objects": ["plant"]},
-      {"row": 3, "col": 1, "room": "living_room"},
+      {"row": 3, "col": 0, "room": "living_room"},
+      {"row": 3, "col": 1, "room": "living_room", "objects": ["plant"]},
       {"row": 3, "col": 2, "room": "living_room"},
       {"row": 3, "col": 3, "room": "deck"},
       {"row": 3, "col": 4, "room": "deck", "objects": ["plant"]},

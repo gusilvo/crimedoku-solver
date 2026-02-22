@@ -7,6 +7,7 @@ returns True when the constraint is satisfied.
 from __future__ import annotations
 from typing import Callable, TYPE_CHECKING
 from cell import ObjectType
+from state import Grid
 
 if TYPE_CHECKING:
     from state import GameState
@@ -22,6 +23,11 @@ _SEQUENTIAL_DIR_PAIRS = [
     ((0, -1), (-1, 0)),  # left + up
 ]
 
+
+def is_wall(r: int, c: int, grid: Grid, room: str) -> bool:
+    if r < 0 or r >= grid.n_rows or c < 0 or c >= grid.n_cols:
+        return True
+    return grid.get_cell(r, c).room_id != room
 
 def in_room(person: str, room_id: str) -> Clue:
     """Person must be located in *room_id*."""
@@ -68,12 +74,7 @@ def in_corner(person: str) -> Clue:
         room = state.room_of(person)
         grid = state.grid
         for (dr1, dc1), (dr2, dc2) in _SEQUENTIAL_DIR_PAIRS:
-            def _is_wall(dr: int, dc: int) -> bool:
-                nr, nc = r + dr, c + dc
-                if nr < 0 or nr >= grid.n_rows or nc < 0 or nc >= grid.n_cols:
-                    return True
-                return grid.get_cell(nr, nc).room_id != room
-            if _is_wall(dr1, dc1) and _is_wall(dr2, dc2):
+            if is_wall(dr1+r, dc1+c, grid, room) and is_wall(dr2+r, dc2+c, grid, room):
                 return True
         return False
     clue.__name__ = f"in_corner({person!r})"
@@ -85,7 +86,12 @@ def not_next_to_wall(person: str) -> Clue:
     def clue(state: "GameState") -> bool:
         r, c = state.position(person)
         grid = state.grid
-        return 0 < r < grid.n_rows - 1 and 0 < c < grid.n_cols - 1
+        room = state.room_of(person)
+        neighbors_cal = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+        for neighbor_cal in neighbors_cal:
+            if (is_wall(r+neighbor_cal[0], c+neighbor_cal[1], grid, room)):
+                return False
+        return True
     clue.__name__ = f"not_next_to_wall({person!r})"
     return clue
 
