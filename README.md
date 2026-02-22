@@ -64,7 +64,7 @@ Puzzles are defined in JSON. Every cell is listed explicitly with its room — n
 | `bed`          | No              |
 | `carpet`       | No              |
 | `chair`        | No              |
-| `cash_register`| No              |
+| `cash_register`| Yes             |
 | `plant`        | Yes             |
 | `table`        | Yes             |
 | `tv`           | Yes             |
