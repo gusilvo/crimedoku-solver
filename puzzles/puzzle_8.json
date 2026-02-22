@@ -1,0 +1,99 @@
+{
+  "grid": {
+    "rows": 7,
+    "cols": 7,
+    "cells": [
+      {"row": 0, "col": 0, "room": "backyard"},
+      {"row": 0, "col": 1, "room": "backyard", "objects": ["table"]},
+      {"row": 0, "col": 2, "room": "backyard", "objects": ["table"]},
+      {"row": 0, "col": 3, "room": "deck"},
+      {"row": 0, "col": 4, "room": "deck"},
+      {"row": 0, "col": 5, "room": "deck", "objects": ["chair"]},
+      {"row": 0, "col": 6, "room": "deck"},
+
+      {"row": 1, "col": 0, "room": "backyard"},
+      {"row": 1, "col": 1, "room": "backyard"},
+      {"row": 1, "col": 2, "room": "backyard", "objects": ["plant"]},
+      {"row": 1, "col": 3, "room": "deck"},
+      {"row": 1, "col": 4, "room": "jacuzzi"},
+      {"row": 1, "col": 5, "room": "jacuzzi"},
+      {"row": 1, "col": 6, "room": "deck"},
+
+      {"row": 2, "col": 0, "room": "backyard", "objects": ["plant"]},
+      {"row": 2, "col": 1, "room": "backyard"},
+      {"row": 2, "col": 2, "room": "backyard"},
+      {"row": 2, "col": 3, "room": "deck"},
+      {"row": 2, "col": 4, "room": "jacuzzi"},
+      {"row": 2, "col": 5, "room": "jacuzzi"},
+      {"row": 2, "col": 6, "room": "deck", "objects": ["chair"]},
+
+      {"row": 3, "col": 0, "room": "living_room", "objects": ["plant"]},
+      {"row": 3, "col": 1, "room": "living_room"},
+      {"row": 3, "col": 2, "room": "living_room"},
+      {"row": 3, "col": 3, "room": "deck"},
+      {"row": 3, "col": 4, "room": "deck", "objects": ["plant"]},
+      {"row": 3, "col": 5, "room": "deck"},
+      {"row": 3, "col": 6, "room": "deck"},
+
+      {"row": 4, "col": 0, "room": "living_room"},
+      {"row": 4, "col": 1, "room": "living_room"},
+      {"row": 4, "col": 2, "room": "living_room"},
+      {"row": 4, "col": 3, "room": "living_room"},
+      {"row": 4, "col": 4, "room": "living_room", "objects": ["tv"]},
+      {"row": 4, "col": 5, "room": "kitchen"},
+      {"row": 4, "col": 6, "room": "kitchen"},
+
+      {"row": 5, "col": 0, "room": "bedroom", "objects": ["table"]},
+      {"row": 5, "col": 1, "room": "bedroom"},
+      {"row": 5, "col": 2, "room": "living_room", "objects": ["chair"]},
+      {"row": 5, "col": 3, "room": "living_room", "objects": ["plant"]},
+      {"row": 5, "col": 4, "room": "living_room", "objects": ["chair"]},
+      {"row": 5, "col": 5, "room": "kitchen"},
+      {"row": 5, "col": 6, "room": "kitchen"},
+
+      {"row": 6, "col": 0, "room": "bedroom", "objects": ["bed"]},
+      {"row": 6, "col": 1, "room": "bedroom", "objects": ["bed"]},
+      {"row": 6, "col": 2, "room": "living_room"},
+      {"row": 6, "col": 3, "room": "living_room", "objects": ["table"]},
+      {"row": 6, "col": 4, "room": "living_room"},
+      {"row": 6, "col": 5, "room": "kitchen", "objects": ["table"]},
+      {"row": 6, "col": 6, "room": "kitchen", "objects": ["table"]}
+    ]
+  },
+  "people": ["Alan", "Bennett", "Carly", "Dawn", "Ellie", "Finlay", "Violet"],
+  "victim": "Violet",
+  "clues": [
+    {
+      "person": "Alan",
+      "type": "next_to_object", "object": "table"
+    },
+    {
+      "person": "Bennett",
+      "type": "at_column", "column": 4
+    },
+    {
+      "person": "Carly",
+      "type": "on_object", "object": "chair"
+    },
+    {
+      "person": "Dawn",
+      "type": "on_object", "object": "bed"
+    },
+    {
+      "person": "Ellie",
+      "type": "next_to_object", "object": "plant", "invert": true
+    },
+    {
+      "person": "Finlay",
+      "type": "in_room", "room": "backyard"      
+    },
+    {
+      "person": "Finlay",
+      "type": "next_to_object", "object": "plant", "invert": true
+    },
+    {
+      "person": "Violet",
+      "type": "alone_with_murderer"
+    }
+  ]
+}

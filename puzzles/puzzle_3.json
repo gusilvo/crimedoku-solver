@@ -1,0 +1,59 @@
+{
+  "grid": {
+    "rows": 6,
+    "cols": 6,
+    "cells": [
+      {"row": 0, "col": 0, "room": "guest_room", "objects": ["bed"]},
+      {"row": 0, "col": 1, "room": "bathroom"},
+      {"row": 0, "col": 2, "room": "bathroom"},
+      {"row": 0, "col": 3, "room": "bathroom"},
+      {"row": 0, "col": 4, "room": "kitchen", "objects": ["table"]},
+      {"row": 0, "col": 5, "room": "kitchen", "objects": ["table"]},
+
+      {"row": 1, "col": 0, "room": "guest_room", "objects": ["bed"]},
+      {"row": 1, "col": 1, "room": "bathroom"},
+      {"row": 1, "col": 2, "room": "bathroom"},
+      {"row": 1, "col": 3, "room": "bathroom", "objects": ["chair"]},
+      {"row": 1, "col": 4, "room": "kitchen"},
+      {"row": 1, "col": 5, "room": "kitchen", "objects": ["plant"]},
+
+      {"row": 2, "col": 0, "room": "guest_room", "objects": ["carpet"]},
+      {"row": 2, "col": 1, "room": "main_room"},
+      {"row": 2, "col": 2, "room": "main_room"},
+      {"row": 2, "col": 3, "room": "main_room", "objects": ["table"]},
+      {"row": 2, "col": 4, "room": "kitchen", "objects": ["plant"]},
+      {"row": 2, "col": 5, "room": "kitchen"},
+
+      {"row": 3, "col": 0, "room": "guest_room", "objects": ["carpet"]},
+      {"row": 3, "col": 1, "room": "main_room", "objects": ["bed"]},
+      {"row": 3, "col": 2, "room": "main_room", "objects": ["bed"]},
+      {"row": 3, "col": 3, "room": "main_room", "objects": ["carpet"]},
+      {"row": 3, "col": 4, "room": "living_room", "objects": ["plant"]},
+      {"row": 3, "col": 5, "room": "living_room", "objects": ["window"]},
+
+      {"row": 4, "col": 0, "room": "guest_room"},
+      {"row": 4, "col": 1, "room": "guest_room"},
+      {"row": 4, "col": 2, "room": "living_room", "objects":["chair"]},
+      {"row": 4, "col": 3, "room": "living_room"},
+      {"row": 4, "col": 4, "room": "living_room"},
+      {"row": 4, "col": 5, "room": "living_room"},
+
+      {"row": 5, "col": 0, "room": "guest_room"},
+      {"row": 5, "col": 1, "room": "guest_room"},
+      {"row": 5, "col": 2, "room": "living_room", "objects":["tv"]},
+      {"row": 5, "col": 3, "room": "living_room"},
+      {"row": 5, "col": 4, "room": "living_room"},
+      {"row": 5, "col": 5, "room": "living_room"}
+    ]
+  },
+  "people": ["Alexander", "Briggs", "Carissa", "Diana", "Elsa", "Vin"],
+  "victim": "Vin",
+  "clues": [
+    {"type": "on_object",           "person": "Alexander",    "object": "bed"},
+    {"type": "in_room",             "person": "Briggs",       "room": "kitchen"},
+    {"type": "next_to_object",      "person": "Carissa",      "object":   "table"},
+    {"type": "next_to_object",      "person": "Diana",        "object": "tv"},
+    {"type": "on_object",           "person": "Elsa",         "object": "window"},
+    {"type": "alone_with_murderer", "person": "Vin"}
+  ]
+}

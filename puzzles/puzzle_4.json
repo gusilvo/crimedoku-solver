@@ -1,0 +1,59 @@
+{
+  "grid": {
+    "rows": 6,
+    "cols": 6,
+    "cells": [
+      {"row": 0, "col": 0, "room": "living_room", "objects": ["window"]},
+      {"row": 0, "col": 1, "room": "living_room"},
+      {"row": 0, "col": 2, "room": "living_room"},
+      {"row": 0, "col": 3, "room": "main_bedroom"},
+      {"row": 0, "col": 4, "room": "main_bedroom"},
+      {"row": 0, "col": 5, "room": "main_bedroom", "objects": ["window"]},
+
+      {"row": 1, "col": 0, "room": "living_room", "objects": ["chair"]},
+      {"row": 1, "col": 1, "room": "living_room", "objects": ["tv"]},
+      {"row": 1, "col": 2, "room": "living_room"},
+      {"row": 1, "col": 3, "room": "main_bedroom", "objects": ["bed"]},
+      {"row": 1, "col": 4, "room": "main_bedroom", "objects": ["bed"]},
+      {"row": 1, "col": 5, "room": "main_bedroom", "objects": ["chair"]},
+
+      {"row": 2, "col": 0, "room": "living_room"},
+      {"row": 2, "col": 1, "room": "living_room"},
+      {"row": 2, "col": 2, "room": "living_room", "objects": ["table"]},
+      {"row": 2, "col": 3, "room": "main_bedroom"},
+      {"row": 2, "col": 4, "room": "main_bedroom"},
+      {"row": 2, "col": 5, "room": "main_bedroom"},
+
+      {"row": 3, "col": 0, "room": "bathroom"},
+      {"row": 3, "col": 1, "room": "bathroom"},
+      {"row": 3, "col": 2, "room": "bathroom"},
+      {"row": 3, "col": 3, "room": "guest_room"},
+      {"row": 3, "col": 4, "room": "guest_room", "objects": ["plant"]},
+      {"row": 3, "col": 5, "room": "guest_room"},
+
+      {"row": 4, "col": 0, "room": "bathroom", "objects": ["table"]},
+      {"row": 4, "col": 1, "room": "bathroom", "objects": ["table"]},
+      {"row": 4, "col": 2, "room": "bathroom"},
+      {"row": 4, "col": 3, "room": "guest_room"},
+      {"row": 4, "col": 4, "room": "guest_room", "objects": ["plant"]},
+      {"row": 4, "col": 5, "room": "guest_room", "objects": ["chair"]},
+
+      {"row": 5, "col": 0, "room": "bathroom", "objects": ["window"]},
+      {"row": 5, "col": 1, "room": "bathroom"},
+      {"row": 5, "col": 2, "room": "bathroom", "objects": ["table"]},
+      {"row": 5, "col": 3, "room": "guest_room"},
+      {"row": 5, "col": 4, "room": "guest_room"},
+      {"row": 5, "col": 5, "room": "guest_room", "objects": ["window"]}
+    ]
+  },
+  "people": ["Antonio", "Ben", "Chelsea", "Dahlia", "Emmy", "Valeria"],
+  "victim": "Valeria",
+  "clues": [
+    {"type": "in_corner",           "person": "Antonio"},
+    {"type": "on_object",           "person": "Ben",     "object": "chair"},
+    {"type": "on_object",           "person": "Chelsea", "object": "window"},
+    {"type": "not_next_to_wall",    "person": "Dahlia"},
+    {"type": "next_to_object",      "person": "Emmy",    "object": "plant"},
+    {"type": "alone_with_murderer", "person": "Valeria"}
+  ]
+}

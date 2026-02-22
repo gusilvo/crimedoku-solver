@@ -1,0 +1,62 @@
+{
+  "grid": {
+    "rows": 6,
+    "cols": 6,
+    "cells": [
+      {"row": 0, "col": 0, "room": "counter"},
+      {"row": 0, "col": 1, "room": "counter"},
+      {"row": 0, "col": 2, "room": "counter"},
+      {"row": 0, "col": 3, "room": "counter", "objects": ["table"]},
+      {"row": 0, "col": 4, "room": "bathroom", "objects": ["chair"]},
+      {"row": 0, "col": 5, "room": "bathroom"},
+
+      {"row": 1, "col": 0, "room": "counter"},
+      {"row": 1, "col": 1, "room": "counter"},
+      {"row": 1, "col": 2, "room": "counter"},
+      {"row": 1, "col": 3, "room": "counter", "objects": ["table"]},
+      {"row": 1, "col": 4, "room": "bathroom"},
+      {"row": 1, "col": 5, "room": "bathroom"},
+
+      {"row": 2, "col": 0, "room": "counter"},
+      {"row": 2, "col": 1, "room": "counter", "objects": ["cash_register"]},
+      {"row": 2, "col": 2, "room": "counter", "objects": ["table"]},
+      {"row": 2, "col": 3, "room": "counter", "objects": ["table"]},
+      {"row": 2, "col": 4, "room": "main_area", "objects": ["chair"]},
+      {"row": 2, "col": 5, "room": "main_area", "objects": ["table"]},
+
+      {"row": 3, "col": 0, "room": "main_area"},
+      {"row": 3, "col": 1, "room": "main_area", "objects": ["chair"]},
+      {"row": 3, "col": 2, "room": "main_area", "objects": ["table"]},
+      {"row": 3, "col": 3, "room": "main_area", "objects": ["table"]},
+      {"row": 3, "col": 4, "room": "main_area", "objects": ["chair"]},
+      {"row": 3, "col": 5, "room": "main_area"},
+
+      {"row": 4, "col": 0, "room": "main_area"},
+      {"row": 4, "col": 1, "room": "main_area"},
+      {"row": 4, "col": 2, "room": "main_area", "objects": ["chair"]},
+      {"row": 4, "col": 3, "room": "main_area", "objects": ["chair"]},
+      {"row": 4, "col": 4, "room": "main_area", "objects": ["table"]},
+      {"row": 4, "col": 5, "room": "main_area"},
+
+      {"row": 5, "col": 0, "room": "main_area", "objects": ["chair"]},
+      {"row": 5, "col": 1, "room": "main_area"},
+      {"row": 5, "col": 2, "room": "main_area", "objects": ["plant"]},
+      {"row": 5, "col": 3, "room": "main_area"},
+      {"row": 5, "col": 4, "room": "main_area", "objects": ["chair"]},
+      {"row": 5, "col": 5, "room": "main_area", "objects": ["plant"]}
+    ]
+  },
+  "people": ["Abigail", "Barbara", "Chloe", "Dwayne", "Everett", "Vander"],
+  "victim": "Vander",
+  "clues": [
+    {"type": "next_to_object", "person": "Abigail", "object": "plant"},
+    {"type": "on_object", "person": "Abigail", "object": "chair", "invert": true},
+    {"type": "next_to_object", "person": "Barbara", "object": "cash_register"},
+    {"type": "at_column", "person": "Chloe", "column": 1},
+    {"type": "above_person", "person": "Dwayne", "target": "Chloe"},
+    {"type": "in_room", "person": "Dwayne", "room": "main_area"},
+    {"type": "on_object", "person": "Everett", "object": "chair"},
+    {"type": "next_to_object", "person": "Everett", "object": "table", "invert": true},
+    {"type": "alone_with_murderer", "person": "Vander"}
+  ]
+}

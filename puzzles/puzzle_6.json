@@ -1,0 +1,59 @@
+{
+  "grid": {
+    "rows": 6,
+    "cols": 6,
+    "cells": [
+      {"row": 0, "col": 0, "room": "crime_novels"},
+      {"row": 0, "col": 1, "room": "crime_novels", "objects": ["bookshelf"]},
+      {"row": 0, "col": 2, "room": "crime_novels", "objects": ["table"]},
+      {"row": 0, "col": 3, "room": "romance", "objects": ["bookshelf"]},
+      {"row": 0, "col": 4, "room": "romance"},
+      {"row": 0, "col": 5, "room": "romance"},
+
+      {"row": 1, "col": 0, "room": "crime_novels"},
+      {"row": 1, "col": 1, "room": "crime_novels"},
+      {"row": 1, "col": 2, "room": "crime_novels"},
+      {"row": 1, "col": 3, "room": "romance"},
+      {"row": 1, "col": 4, "room": "romance"},
+      {"row": 1, "col": 5, "room": "romance", "objects": ["bookshelf"]},
+
+      {"row": 2, "col": 0, "room": "non-fiction"},
+      {"row": 2, "col": 1, "room": "non-fiction"},
+      {"row": 2, "col": 2, "room": "non-fiction"},
+      {"row": 2, "col": 3, "room": "non-fiction", "objects": ["bookshelf"]},
+      {"row": 2, "col": 4, "room": "romance"},
+      {"row": 2, "col": 5, "room": "romance", "objects": ["bookshelf"]},
+
+      {"row": 3, "col": 0, "room": "non-fiction", "objects": ["bookshelf"]},
+      {"row": 3, "col": 1, "room": "non-fiction"},
+      {"row": 3, "col": 2, "room": "non-fiction", "objects": ["bookshelf"]},
+      {"row": 3, "col": 3, "room": "non-fiction"},
+      {"row": 3, "col": 4, "room": "checkout"},
+      {"row": 3, "col": 5, "room": "checkout"},
+
+      {"row": 4, "col": 0, "room": "best-sellers"},
+      {"row": 4, "col": 1, "room": "best-sellers", "objects": ["bookshelf"]},
+      {"row": 4, "col": 2, "room": "best-sellers"},
+      {"row": 4, "col": 3, "room": "best-sellers", "objects": ["bookshelf"]},
+      {"row": 4, "col": 4, "room": "checkout"},
+      {"row": 4, "col": 5, "room": "checkout", "objects": ["cash_register"]},
+
+      {"row": 5, "col": 0, "room": "best-sellers", "objects": ["bookshelf"]},
+      {"row": 5, "col": 1, "room": "best-sellers", "objects": ["bookshelf"]},
+      {"row": 5, "col": 2, "room": "best-sellers"},
+      {"row": 5, "col": 3, "room": "best-sellers", "objects": ["bookshelf"]},
+      {"row": 5, "col": 4, "room": "checkout"},
+      {"row": 5, "col": 5, "room": "checkout", "objects": ["bookshelf"]}
+    ]
+  },
+  "people": ["Aria", "Bruce", "Calvin", "Don", "Everly", "Vicky"],
+  "victim": "Vicky",
+  "clues": [
+    {"type": "in_room",             "person": "Aria",   "room": "best-sellers"},
+    {"type": "next_to_object",      "person": "Bruce",  "object": "table"},
+    {"type": "next_to_object",      "person": "Calvin", "object": "bookshelf", "invert": true},
+    {"type": "below_person",        "person": "Don",    "target": "Aria"},
+    {"type": "in_room",             "person": "Everly", "room": "romance"},
+    {"type": "alone_with_murderer", "person": "Vicky"}
+  ]
+}

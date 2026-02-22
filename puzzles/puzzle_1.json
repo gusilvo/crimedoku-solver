@@ -1,0 +1,59 @@
+{
+  "grid": {
+    "rows": 6,
+    "cols": 6,
+    "cells": [
+      {"row": 0, "col": 0, "room": "living_room"},
+      {"row": 0, "col": 1, "room": "living_room", "objects": ["window"]},
+      {"row": 0, "col": 2, "room": "living_room"},
+      {"row": 0, "col": 3, "room": "main_room"},
+      {"row": 0, "col": 4, "room": "main_room", "objects": ["window"]},
+      {"row": 0, "col": 5, "room": "main_room"},
+
+      {"row": 1, "col": 0, "room": "living_room"},
+      {"row": 1, "col": 1, "room": "living_room"},
+      {"row": 1, "col": 2, "room": "living_room", "objects": ["carpet"]},
+      {"row": 1, "col": 3, "room": "main_room"},
+      {"row": 1, "col": 4, "room": "main_room", "objects": ["bed"]},
+      {"row": 1, "col": 5, "room": "main_room"},
+
+      {"row": 2, "col": 0, "room": "living_room"},
+      {"row": 2, "col": 1, "room": "living_room"},
+      {"row": 2, "col": 2, "room": "living_room"},
+      {"row": 2, "col": 3, "room": "main_room"},
+      {"row": 2, "col": 4, "room": "main_room", "objects": ["bed"]},
+      {"row": 2, "col": 5, "room": "main_room"},
+
+      {"row": 3, "col": 0, "room": "hall", "objects": ["table"]},
+      {"row": 3, "col": 1, "room": "hall"},
+      {"row": 3, "col": 2, "room": "hall"},
+      {"row": 3, "col": 3, "room": "dinner_room"},
+      {"row": 3, "col": 4, "room": "dinner_room"},
+      {"row": 3, "col": 5, "room": "dinner_room", "objects": ["table"]},
+
+      {"row": 4, "col": 0, "room": "hall"},
+      {"row": 4, "col": 1, "room": "hall"},
+      {"row": 4, "col": 2, "room": "hall", "objects": ["plant"]},
+      {"row": 4, "col": 3, "room": "dinner_room"},
+      {"row": 4, "col": 4, "room": "dinner_room"},
+      {"row": 4, "col": 5, "room": "dinner_room", "objects": ["plant"]},
+
+      {"row": 5, "col": 0, "room": "hall", "objects": ["table"]},
+      {"row": 5, "col": 1, "room": "hall"},
+      {"row": 5, "col": 2, "room": "hall"},
+      {"row": 5, "col": 3, "room": "dinner_room"},
+      {"row": 5, "col": 4, "room": "dinner_room"},
+      {"row": 5, "col": 5, "room": "dinner_room"}
+    ]
+  },
+  "people": ["Axel", "Bella", "Cora", "Douglas", "Ella", "Vincent"],
+  "victim": "Vincent",
+  "clues": [
+    {"type": "on_object",           "person": "Axel",    "object": "window"},
+    {"type": "in_room",             "person": "Bella",   "room":   "hall"},
+    {"type": "on_object",           "person": "Cora",    "object": "carpet"},
+    {"type": "on_object",           "person": "Douglas", "object": "bed"},
+    {"type": "next_to_object",      "person": "Ella",    "object": "plant"},
+    {"type": "alone_with_murderer", "person": "Vincent"}
+  ]
+}
