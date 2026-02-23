@@ -34,7 +34,7 @@
       {"row": 3, "col": 1, "room": "main_bedroom", "objects": ["bookshelf"]},
       {"row": 3, "col": 2, "room": "bathroom"},
       {"row": 3, "col": 3, "room": "bathroom"},
-      {"row": 4, "col": 4, "room": "dining_room"},
+      {"row": 3, "col": 4, "room": "dining_room"},
       {"row": 3, "col": 5, "room": "dining_room"},
       {"row": 3, "col": 6, "room": "dining_room"},
       {"row": 3, "col": 7, "room": "dining_room", "objects": ["table"]},

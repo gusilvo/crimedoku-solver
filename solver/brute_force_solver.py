@@ -1,7 +1,8 @@
 from __future__ import annotations
+import re
 from dataclasses import dataclass
 from itertools import permutations
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional, Tuple
 from state import GameState
 from puzzle import Puzzle
 
@@ -39,22 +40,79 @@ class Solver:
     Brute-force permutation solver for Murdoku puzzles.
 
     Search space: (N!)^2 — all ways to assign N people to N rows *and* N columns
-    while keeping rows and columns unique.  For N=6 this is 518 400 candidates,
-    all visited in well under a second.
+    while keeping rows and columns unique.
+
+    Optimizations applied:
+    - Row-level pre-pruning: above_person / below_person constraints are checked
+      before the inner col_perm loop, eliminating N! inner iterations early.
+    - Column prefilter: at_column constraints reduce the inner loop from N! to
+      (N-k)! by fixing known columns and only permuting the rest.
     """
 
     def __init__(self, puzzle: Puzzle):
         self.puzzle = puzzle
+        # Pre-parse clue names to extract row-order and column constraints.
+        self._above: List[Tuple[str, str]] = []   # (person, must_be_above)
+        self._below: List[Tuple[str, str]] = []   # (person, must_be_below)
+        self._col_fixed: Dict[str, int] = {}       # person -> required column
+
+        for clue in puzzle.clues:
+            name = getattr(clue, "__name__", "")
+            m = re.match(r"above_person\('(.+?)', '(.+?)'\)", name)
+            if m:
+                self._above.append((m.group(1), m.group(2)))
+                continue
+            m = re.match(r"below_person\('(.+?)', '(.+?)'\)", name)
+            if m:
+                self._below.append((m.group(1), m.group(2)))
+                continue
+            m = re.match(r"at_column\('(.+?)', (\d+)\)", name)
+            if m:
+                self._col_fixed[m.group(1)] = int(m.group(2))
+
+    def _col_perms(self, row_order: Tuple[str, ...]):
+        """Yield col permutations that satisfy at_column constraints."""
+        n = len(row_order)
+        if not self._col_fixed:
+            yield from permutations(range(n))
+            return
+
+        fixed: Dict[int, int] = {}  # row_idx -> col
+        for row_idx, person in enumerate(row_order):
+            if person in self._col_fixed:
+                col = self._col_fixed[person]
+                if col in fixed.values():
+                    return  # Two people need the same column — impossible
+                fixed[row_idx] = col
+
+        fixed_cols = set(fixed.values())
+        free_rows = [r for r in range(n) if r not in fixed]
+        free_cols = [c for c in range(n) if c not in fixed_cols]
+
+        for perm in permutations(free_cols):
+            col_p = [0] * n
+            for r, c in fixed.items():
+                col_p[r] = c
+            for i, r in enumerate(free_rows):
+                col_p[r] = perm[i]
+            yield col_p
 
     def solve(self) -> Solution:
         """Return the unique Solution, or raise NoSolutionError / MultipleSolutionsError."""
         puzzle = self.puzzle
         people = puzzle.people
-        n = len(people)
         found: List[Solution] = []
 
         for row_order in permutations(people):
-            for col_perm in permutations(range(n)):
+            ro_idx = {p: i for i, p in enumerate(row_order)}
+
+            # Row-level pre-pruning (no col_perm loop needed for invalid row orders)
+            if any(ro_idx[p] >= ro_idx[t] for p, t in self._above):
+                continue
+            if any(ro_idx[p] <= ro_idx[t] for p, t in self._below):
+                continue
+
+            for col_perm in self._col_perms(row_order):
                 # Fast-reject: any person placed on a blocked cell?
                 if any(
                     puzzle.grid.get_cell(row, col).is_blocked
@@ -64,11 +122,9 @@ class Solver:
 
                 state = GameState(list(row_order), list(col_perm), puzzle.grid)
 
-                # Validate all clues
                 if not all(clue(state) for clue in puzzle.clues):
                     continue
 
-                # Murder rule: victim's room must hold exactly 2 people
                 victim_room = state.room_of(puzzle.victim)
                 room_members = state.people_in_room(victim_room)
                 if len(room_members) != 2:

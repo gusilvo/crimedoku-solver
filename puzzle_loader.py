@@ -48,6 +48,7 @@ from grid import Grid
 from clues import (
     in_room, on_object, only_on_object, next_to_object, alone_with_murderer,
     in_corner, not_next_to_wall, below_person, above_person, at_column,
+    with_person, alone_in_room, only_one_person_on, same_column_as_object, left_of,
 )
 from puzzle import Puzzle
 
@@ -67,8 +68,10 @@ def _parse_objects(names: List[str]) -> frozenset:
 
 def _parse_clue(spec: Dict[str, Any]):
     clue_type = spec.get("type")
-    person = spec["person"]
     invert = spec.get("invert", False)
+
+    # Resolve person (some clues like only_one_person_on have no person field)
+    person = spec.get("person")
 
     if clue_type == "in_room":
         return in_room(person, spec["room"])
@@ -82,7 +85,7 @@ def _parse_clue(spec: Dict[str, Any]):
             return next_to_object(person, obj, invert=invert)
     elif clue_type == "alone_with_murderer":
         return alone_with_murderer(person)
-    elif clue_type == "in_corner":
+    elif clue_type in ("in_corner", "at_corner"):
         return in_corner(person)
     elif clue_type == "not_next_to_wall":
         return not_next_to_wall(person)
@@ -92,11 +95,26 @@ def _parse_clue(spec: Dict[str, Any]):
         return above_person(person, spec["target"])
     elif clue_type == "at_column":
         return at_column(person, spec["column"])
+    elif clue_type in ("with_person", "in_same_room_as_person"):
+        return with_person(person, spec["target"], invert=invert)
+    elif clue_type == "alone_in_room":
+        return alone_in_room(person, spec["room"])
+    elif clue_type == "only_one_person_on":
+        obj = _OBJECT_MAP[spec["object"].lower()]
+        return only_one_person_on(obj)
+    elif clue_type == "same_column_as_object":
+        obj = _OBJECT_MAP[spec["object"].lower()]
+        return same_column_as_object(person, obj, spec.get("different_room", False))
+    elif clue_type == "left_of":
+        obj = _OBJECT_MAP[spec["target"].lower()]
+        return left_of(person, obj, spec.get("different_room", False))
     else:
         valid = [
             "in_room", "on_object", "only_on_object", "next_to_object",
-            "alone_with_murderer", "in_corner", "not_next_to_wall",
-            "below_person", "above_person", "at_column",
+            "alone_with_murderer", "in_corner", "at_corner", "not_next_to_wall",
+            "below_person", "above_person", "at_column", "with_person",
+            "in_same_room_as_person", "alone_in_room", "only_one_person_on",
+            "same_column_as_object", "left_of",
         ]
         raise ValueError(f"Unknown clue type: {clue_type!r}. Valid: {valid}")
 
@@ -119,11 +137,12 @@ def load_puzzle(path: str | Path) -> Puzzle:
         objects = _parse_objects(cell_spec.get("objects", []))
         cell_matrix[r][c] = Cell(row=r, col=c, room_id=room, objects=objects)
 
-    # Verify every cell was defined
+    # Fill missing cells with void (supports deformed/non-square maps)
+    _VOID_OBJ = frozenset({ObjectType.VOID})
     for r in range(n_rows):
         for c in range(n_cols):
             if cell_matrix[r][c] is None:
-                raise ValueError(f"Cell ({r}, {c}) is missing from the puzzle JSON.")
+                cell_matrix[r][c] = Cell(row=r, col=c, room_id="__void__", objects=_VOID_OBJ)
 
     grid = Grid(cell_matrix)
     people: List[str] = data["people"]

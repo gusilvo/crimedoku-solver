@@ -127,3 +127,67 @@ def alone_with_murderer(victim: str) -> Clue:
         return len(state.people_in_room(room)) == 2
     clue.__name__ = f"alone_with_murderer({victim!r})"
     return clue
+
+
+def with_person(person: str, target: str, invert: bool = False) -> Clue:
+    """Person is in the same room as *target* (or not, if invert=True)."""
+    def clue(state: "GameState") -> bool:
+        result = state.room_of(person) == state.room_of(target)
+        return (not result) if invert else result
+    tag = "not_with_person" if invert else "with_person"
+    clue.__name__ = f"{tag}({person!r}, {target!r})"
+    return clue
+
+
+def alone_in_room(person: str, room: str) -> Clue:
+    """Person is the only one in *room*."""
+    def clue(state: "GameState") -> bool:
+        if state.room_of(person) != room:
+            return False
+        return state.people_in_room(room) == [person]
+    clue.__name__ = f"alone_in_room({person!r}, {room!r})"
+    return clue
+
+
+def only_one_person_on(obj: ObjectType) -> Clue:
+    """At most one person total is standing on any cell that has *obj*."""
+    def clue(state: "GameState") -> bool:
+        return len(state.people_on_object(obj)) <= 1
+    clue.__name__ = f"only_one_person_on({obj.name})"
+    return clue
+
+
+def same_column_as_object(person: str, obj: ObjectType, different_room: bool) -> Clue:
+    """Person's column matches an *obj* cell; different_room controls room membership."""
+    def clue(state: "GameState") -> bool:
+        p_col = state.position(person)[1]
+        p_room = state.room_of(person)
+        for cell in state.grid.cells_with_object(obj):
+            if cell.col == p_col:
+                in_same = cell.room_id == p_room
+                if different_room and not in_same:
+                    return True
+                if not different_room and in_same:
+                    return True
+        return False
+    tag = "diff_room" if different_room else "same_room"
+    clue.__name__ = f"same_column_as_object({person!r}, {obj.name}, {tag})"
+    return clue
+
+
+def left_of(person: str, obj: ObjectType, different_room: bool) -> Clue:
+    """Person's column is strictly less than an *obj* cell's column; different_room controls room."""
+    def clue(state: "GameState") -> bool:
+        p_col = state.position(person)[1]
+        p_room = state.room_of(person)
+        for cell in state.grid.cells_with_object(obj):
+            if p_col < cell.col:
+                in_same = cell.room_id == p_room
+                if different_room and not in_same:
+                    return True
+                if not different_room and in_same:
+                    return True
+        return False
+    tag = "diff_room" if different_room else "same_room"
+    clue.__name__ = f"left_of({person!r}, {obj.name}, {tag})"
+    return clue

@@ -19,7 +19,13 @@ class ObjectType(Enum):
     CHAIR         = ("chair",         False)
     TV            = ("tv",            True)
     BOOKSHELF     = ("bookshelf",     True)
-    CASH_REGISTER = ("cash_register", True)
+    CASH_REGISTER = ("cash_register", False)
+    RUBBISH       = ("rubbish",       True)
+    ROCK          = ("rock",          True)
+    COMPUTER      = ("computer",      True)
+    GIFT          = ("gift",          False)
+    BOX           = ("box",           True)
+    VOID          = ("__void__",      True)
 
     def __new__(cls, value: str, blocks: bool):
         obj = object.__new__(cls)
