@@ -50,8 +50,8 @@
       {"row": 4, "col": 4, "room": "kitchen", "objects": ["table"]},
       {"row": 4, "col": 5, "room": "kitchen"},
       {"row": 4, "col": 6, "room": "main_bedroom"},
-      {"row": 4, "col": 7, "room": "main_bedroom"},
-      {"row": 4, "col": 8, "room": "main_bedroom"},
+      {"row": 4, "col": 7, "room": "main_bedroom", "objects": ["bed"]},
+      {"row": 4, "col": 8, "room": "main_bedroom", "objects": ["bookshelf"]},
 
       {"row": 5, "col": 0, "room": "dining_room"},
       {"row": 5, "col": 1, "room": "dining_room"},
@@ -98,7 +98,8 @@
   "victim": "Vincenzo",
   "clues": [
     {"type": "next_to_object", "person": "Adam", "object": "bookshelf", "invert": true},
-    {"type": "on_object", "person": "Belinda", "object": "bed"},
+    {"type": "in_room", "person": "Adam", "room": "storage"},
+    {"type": "on_object", "person": "Belinda", "object": "chair"},
     {"type": "in_room", "person": "Belinda", "room": "basement"},
     {"type": "in_room", "person": "Cotton", "room": "bathroom"},
     {"type": "in_room", "person": "Dean", "room": "main_bedroom"},

@@ -2,6 +2,7 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass
 from itertools import permutations
+from math import factorial
 from typing import Any, Dict, List, Optional, Tuple
 from state import GameState
 from puzzle import Puzzle
@@ -49,8 +50,9 @@ class Solver:
       (N-k)! by fixing known columns and only permuting the rest.
     """
 
-    def __init__(self, puzzle: Puzzle):
+    def __init__(self, puzzle: Puzzle, verbose: bool = False):
         self.puzzle = puzzle
+        self.verbose = verbose
         # Pre-parse clue names to extract row-order and column constraints.
         self._above: List[Tuple[str, str]] = []   # (person, must_be_above)
         self._below: List[Tuple[str, str]] = []   # (person, must_be_below)
@@ -103,7 +105,13 @@ class Solver:
         people = puzzle.people
         found: List[Solution] = []
 
-        for row_order in permutations(people):
+        row_iter = permutations(people)
+        if self.verbose:
+            from tqdm import tqdm
+            row_iter = tqdm(row_iter, total=factorial(len(people)),
+                            desc="Brute-force", unit="row-perm")
+
+        for row_order in row_iter:
             ro_idx = {p: i for i, p in enumerate(row_order)}
 
             # Row-level pre-pruning (no col_perm loop needed for invalid row orders)

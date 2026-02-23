@@ -97,7 +97,7 @@
   "people": ["Ace", "Bella", "Camilla", "Dylan", "Eileen", "Fred", "Grace", "Hayden", "Velma"],
   "victim": "Velma",
   "clues": [
-    {"type": "on_object", "person": "Ace", "object": "carpet"},
+    {"type": "only_on_object", "person": "Ace", "object": "carpet"},
     {"type": "in_room", "person": "Bella", "room": "snack_bar"},
     {"type": "next_to_object", "person": "Bella", "object": "table"},
     {"type": "in_corner", "person": "Camilla"},
