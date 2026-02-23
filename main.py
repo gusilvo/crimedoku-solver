@@ -1,6 +1,7 @@
 """Entry point: interactively choose a solver and puzzle, then solve."""
 import sys
 import time
+import re
 from pathlib import Path
 import questionary
 from loading import load_puzzle
@@ -28,7 +29,9 @@ def choose_solver():
 
 
 def choose_puzzle() -> Path:
-    puzzle_files = sorted(PUZZLES_DIR.glob("*.json"))
+    puzzle_files = sorted(
+        PUZZLES_DIR.glob("*.json"),
+        key=lambda f: int(re.search(r'\d+', f.stem).group()))
     if not puzzle_files:
         print("No puzzle files found in", PUZZLES_DIR)
         sys.exit(1)
