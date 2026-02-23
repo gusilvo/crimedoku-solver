@@ -2,8 +2,8 @@ import sys, os
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 
 import pytest
-from cell import Cell, ObjectType
-from grid import Grid
+from models.cell import Cell, ObjectType
+from models.grid import Grid
 
 
 def make_2x2_grid():

@@ -3,11 +3,12 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 
 import pytest
 from pathlib import Path
-from puzzle_loader import load_puzzle
-from solver.brute_force_solver import Solver, NoSolutionError, MultipleSolutionsError
-from cell import Cell, ObjectType
-from grid import Grid
-from puzzle import Puzzle
+from loading import load_puzzle
+from solver.brute_force import Solver
+from solver.base import NoSolutionError, MultipleSolutionsError
+from models.cell import Cell, ObjectType
+from models.grid import Grid
+from models.puzzle import Puzzle
 from clues import in_room
 
 PUZZLES_DIR = Path(__file__).parent.parent / "puzzles"

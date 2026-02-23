@@ -2,9 +2,9 @@ import sys, os
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 
 import pytest
-from cell import Cell, ObjectType
-from grid import Grid
-from state import GameState
+from models.cell import Cell, ObjectType
+from models.grid import Grid
+from models.state import GameState
 from clues import (
     in_room, on_object, only_on_object, next_to_object, alone_with_murderer,
     in_corner, not_next_to_wall, below_person, above_person, at_column,

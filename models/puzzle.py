@@ -1,10 +1,10 @@
 from __future__ import annotations
 from dataclasses import dataclass
 from typing import Callable, List, TYPE_CHECKING
-from grid import Grid
+from models.grid import Grid
 
 if TYPE_CHECKING:
-    from state import GameState
+    from models.state import GameState
 
 Clue = Callable[["GameState"], bool]
 

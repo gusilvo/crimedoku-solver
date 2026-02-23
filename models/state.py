@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Dict, List, Tuple
-from cell import Cell, ObjectType
-from grid import Grid
+from models.cell import Cell, ObjectType
+from models.grid import Grid
 
 
 class GameState:

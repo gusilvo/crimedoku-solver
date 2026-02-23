@@ -1,6 +1,6 @@
 from __future__ import annotations
 from typing import List
-from cell import Cell, ObjectType
+from models.cell import Cell, ObjectType
 
 
 class Grid:
