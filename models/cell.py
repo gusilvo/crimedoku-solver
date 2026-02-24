@@ -26,6 +26,7 @@ class ObjectType(Enum):
     GIFT          = ("gift",          False)
     BOX           = ("box",           True)
     VOID          = ("__void__",      True)
+    STATUE        = ("statue",        True)
 
     def __new__(cls, value: str, blocks: bool):
         obj = object.__new__(cls)

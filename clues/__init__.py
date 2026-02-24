@@ -15,11 +15,12 @@ from clues.above_person import above_person
 from clues.at_column import at_column
 from clues.same_column_as_object import same_column_as_object
 from clues.left_of import left_of
+from clues.only_with_person import only_with_person
 
 __all__ = [
     "Clue", "is_wall", "_SEQUENTIAL_DIR_PAIRS", "CLUE_REGISTRY",
     "in_room", "on_object", "only_on_object", "only_one_person_on",
     "next_to_object", "alone_with_murderer", "with_person", "alone_in_room",
     "in_corner", "not_next_to_wall", "below_person", "above_person",
-    "at_column", "same_column_as_object", "left_of",
+    "at_column", "same_column_as_object", "left_of", "only_with_person"
 ]

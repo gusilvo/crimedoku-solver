@@ -25,6 +25,7 @@ from clues.above_person import above_person
 from clues.at_column import at_column
 from clues.same_column_as_object import same_column_as_object
 from clues.left_of import left_of
+from clues.only_with_person import only_with_person
 
 # Maps lowercase object name string → ObjectType member
 _OBJ: Dict[str, ObjectType] = {o.value: o for o in ObjectType}
@@ -47,7 +48,7 @@ def _obj_target(spec: dict) -> ObjectType:
 
 CLUE_REGISTRY: Dict[str, Callable[[dict], Clue]] = {
     "in_room":
-        lambda s: in_room(s["person"], s["room"]),
+        lambda s: in_room(s["person"], s["room"], s.get("invert", False)),
 
     "on_object":
         lambda s: on_object(s["person"], _obj(s), s.get("invert", False)),
@@ -98,4 +99,7 @@ CLUE_REGISTRY: Dict[str, Callable[[dict], Clue]] = {
 
     "left_of":
         lambda s: left_of(s["person"], _obj_target(s), s.get("different_room", False)),
+
+    "only_with_person":
+        lambda s: only_with_person(s["person"], s["target"])
 }

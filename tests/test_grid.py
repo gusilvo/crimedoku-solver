@@ -61,7 +61,7 @@ def test_object_type_blocks():
     assert ObjectType.TABLE.blocks is True
     assert ObjectType.WINDOW.blocks is False
     assert ObjectType.BED.blocks is False
-    assert ObjectType.PLANT.blocks is False
+    assert ObjectType.PLANT.blocks is True
     assert ObjectType.CARPET.blocks is False
 
 

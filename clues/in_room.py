@@ -6,9 +6,11 @@ if TYPE_CHECKING:
     from models.state import GameState
 
 
-def in_room(person: str, room_id: str) -> Clue:
+def in_room(person: str, room_id: str, invert: bool) -> Clue:
     """Person must be located in *room_id*."""
     def clue(state: "GameState") -> bool:
-        return state.room_of(person) == room_id
-    clue.__name__ = f"in_room({person!r}, {room_id!r})"
+        result = state.room_of(person) == room_id
+        return not result if invert else result
+    tag = "not_in_room" if invert else "in_room"
+    clue.__name__ = f"{tag}({person!r}, {room_id!r})"
     return clue
